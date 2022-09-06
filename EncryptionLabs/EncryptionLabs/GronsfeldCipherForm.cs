@@ -73,6 +73,11 @@ namespace EncryptionLabs
             GronsfeldCipher();
         }
 
-       
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            MainWindow mw = new MainWindow();
+            mw.Show();
+        }
     }
 }

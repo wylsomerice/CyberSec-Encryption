@@ -26,8 +26,15 @@ namespace EncryptionLabs
 
         #region Шифр Гронсфельда
 
-       
+
 
         #endregion
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            RsaCipher rsaCipher = new RsaCipher();
+            rsaCipher.Show();
+        }
     }
 }
