@@ -46,29 +46,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileBlock.cs">
+    <Compile Include="ExcercisesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FileBlock.Designer.cs">
-      <DependentUpon>FileBlock.cs</DependentUpon>
+    <Compile Include="ExcercisesForm.Designer.cs">
+      <DependentUpon>ExcercisesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AlGamalEncryptionForm_3.cs">
+    <Compile Include="RsaCipherForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AlGamalEncryptionForm_3.Designer.cs">
-      <DependentUpon>AlGamalEncryptionForm_3.cs</DependentUpon>
+    <Compile Include="RsaCipherForm.Designer.cs">
+      <DependentUpon>RsaCipherForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="RsaCipherForm_2.cs">
+    <Compile Include="GronsfeldCipherForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RsaCipherForm_2.Designer.cs">
-      <DependentUpon>RsaCipherForm_2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GronsfeldCipherForm_1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GronsfeldCipherForm_1.Designer.cs">
-      <DependentUpon>GronsfeldCipherForm_1.cs</DependentUpon>
+    <Compile Include="GronsfeldCipherForm.Designer.cs">
+      <DependentUpon>GronsfeldCipherForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
@@ -78,8 +72,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="GronsfeldCipherForm_1.resx">
-      <DependentUpon>GronsfeldCipherForm_1.cs</DependentUpon>
+    <EmbeddedResource Include="GronsfeldCipherForm.resx">
+      <DependentUpon>GronsfeldCipherForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
@@ -93,14 +87,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FileBlock.resx">
-      <DependentUpon>FileBlock.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AlGamalEncryptionForm_3.resx">
-      <DependentUpon>AlGamalEncryptionForm_3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RsaCipherForm_2.resx">
-      <DependentUpon>RsaCipherForm_2.cs</DependentUpon>
+    <EmbeddedResource Include="RsaCipherForm.resx">
+      <DependentUpon>RsaCipherForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -114,6 +102,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Lab1\" />
+    <Folder Include="Lab2\" />
+    <Folder Include="Lab3\" />
+    <Folder Include="Lab4\" />
+    <Folder Include="Lab5\" />
+    <Folder Include="Lab6\" />
+    <Folder Include="Lab7\" />
+    <Folder Include="Lab8\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

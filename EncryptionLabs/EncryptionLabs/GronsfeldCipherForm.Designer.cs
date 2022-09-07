@@ -1,6 +1,6 @@
 ﻿namespace EncryptionLabs
 {
-    partial class GronsfeldCipherForm_1
+    partial class GronsfeldCipherForm
     {
         /// <summary>
         /// Required designer variable.

@@ -1,6 +1,6 @@
 ﻿namespace EncryptionLabs
 {
-    partial class RsaCipherForm_2
+    partial class RsaCipherForm
     {
         /// <summary>
         /// Required designer variable.

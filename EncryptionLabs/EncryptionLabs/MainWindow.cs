@@ -23,25 +23,22 @@ namespace EncryptionLabs
             button8.Enabled = false;
         }
 
+        #region Шифр Гронсфельда
         private void button1_Click(object sender, EventArgs e)
         {
             this.Visible = false;
-            GronsfeldCipherForm_1 gronsfeldCipher = new GronsfeldCipherForm_1();
+            GronsfeldCipherForm gronsfeldCipher = new GronsfeldCipherForm();
             gronsfeldCipher.Show();
         }
-
-        #region Шифр Гронсфельда
-
-
-
         #endregion
-
+        #region RSA-шифрование
         private void button2_Click(object sender, EventArgs e)
         {
             this.Visible = false;
-            RsaCipherForm_2 rsaCipher = new RsaCipherForm_2();
+            RsaCipherForm rsaCipher = new RsaCipherForm();
             rsaCipher.Show();
         }
+        #endregion
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -75,7 +72,8 @@ namespace EncryptionLabs
 
         private void button9_Click(object sender, EventArgs e)
         {
-
+            ExcercisesForm excercises = new ExcercisesForm();
+            excercises.Show();
         }
     }
 }
