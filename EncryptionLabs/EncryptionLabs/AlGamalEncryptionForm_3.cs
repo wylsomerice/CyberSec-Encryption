@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace EncryptionLabs
 {
-    public partial class RsaCipher : Form
+    public partial class RsaCipherForm_2 : Form
     {
         RSAParameters privateKey;
         RSAParameters publicKey;
-        public RsaCipher()
+        public RsaCipherForm_2()
         {
             InitializeComponent();
             //Пункт 1

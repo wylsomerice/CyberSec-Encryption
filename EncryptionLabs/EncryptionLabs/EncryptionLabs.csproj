@@ -46,17 +46,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RsaCipher.cs">
+    <Compile Include="FileBlock.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RsaCipher.Designer.cs">
-      <DependentUpon>RsaCipher.cs</DependentUpon>
+    <Compile Include="FileBlock.Designer.cs">
+      <DependentUpon>FileBlock.cs</DependentUpon>
     </Compile>
-    <Compile Include="GronsfeldCipherForm.cs">
+    <Compile Include="AlGamalEncryptionForm_3.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GronsfeldCipherForm.Designer.cs">
-      <DependentUpon>GronsfeldCipherForm.cs</DependentUpon>
+    <Compile Include="AlGamalEncryptionForm_3.Designer.cs">
+      <DependentUpon>AlGamalEncryptionForm_3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RsaCipherForm_2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RsaCipherForm_2.Designer.cs">
+      <DependentUpon>RsaCipherForm_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GronsfeldCipherForm_1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GronsfeldCipherForm_1.Designer.cs">
+      <DependentUpon>GronsfeldCipherForm_1.cs</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
@@ -66,8 +78,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="GronsfeldCipherForm.resx">
-      <DependentUpon>GronsfeldCipherForm.cs</DependentUpon>
+    <EmbeddedResource Include="GronsfeldCipherForm_1.resx">
+      <DependentUpon>GronsfeldCipherForm_1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
@@ -81,8 +93,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="RsaCipher.resx">
-      <DependentUpon>RsaCipher.cs</DependentUpon>
+    <EmbeddedResource Include="FileBlock.resx">
+      <DependentUpon>FileBlock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AlGamalEncryptionForm_3.resx">
+      <DependentUpon>AlGamalEncryptionForm_3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RsaCipherForm_2.resx">
+      <DependentUpon>RsaCipherForm_2.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

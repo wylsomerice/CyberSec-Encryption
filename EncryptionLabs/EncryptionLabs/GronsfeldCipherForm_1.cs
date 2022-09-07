@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace EncryptionLabs
 {
-    public partial class GronsfeldCipherForm : Form
+    public partial class GronsfeldCipherForm_1 : Form
     {
-        public GronsfeldCipherForm()
+        public GronsfeldCipherForm_1()
         {
             InitializeComponent();
         }
