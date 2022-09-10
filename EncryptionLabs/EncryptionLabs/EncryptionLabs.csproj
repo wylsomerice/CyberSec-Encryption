@@ -52,17 +52,53 @@
     <Compile Include="ExcercisesForm.Designer.cs">
       <DependentUpon>ExcercisesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="RsaCipherForm.cs">
+    <Compile Include="Lab2\RsaCipherForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RsaCipherForm.Designer.cs">
+    <Compile Include="Lab2\RsaCipherForm.Designer.cs">
       <DependentUpon>RsaCipherForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GronsfeldCipherForm.cs">
+    <Compile Include="Lab1\GronsfeldCipherForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GronsfeldCipherForm.Designer.cs">
+    <Compile Include="Lab1\GronsfeldCipherForm.Designer.cs">
       <DependentUpon>GronsfeldCipherForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lab3\AlGamalCipherForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lab3\AlGamalCipherForm.Designer.cs">
+      <DependentUpon>AlGamalCipherForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lab4\BinaryBlockCipherForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lab4\BinaryBlockCipherForm.Designer.cs">
+      <DependentUpon>BinaryBlockCipherForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lab5\RightSendCheckForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lab5\RightSendCheckForm.Designer.cs">
+      <DependentUpon>RightSendCheckForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lab6\FileCompressionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lab6\FileCompressionForm.Designer.cs">
+      <DependentUpon>FileCompressionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lab7\PasswordHashForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lab7\PasswordHashForm.Designer.cs">
+      <DependentUpon>PasswordHashForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lab8\MessageEncryptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lab8\MessageEncryptionForm.Designer.cs">
+      <DependentUpon>MessageEncryptionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
@@ -72,7 +108,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="GronsfeldCipherForm.resx">
+    <EmbeddedResource Include="Lab1\GronsfeldCipherForm.resx">
       <DependentUpon>GronsfeldCipherForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
@@ -87,7 +123,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="RsaCipherForm.resx">
+    <EmbeddedResource Include="Lab2\RsaCipherForm.resx">
       <DependentUpon>RsaCipherForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -103,15 +139,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Lab1\" />
-    <Folder Include="Lab2\" />
-    <Folder Include="Lab3\" />
-    <Folder Include="Lab4\" />
-    <Folder Include="Lab5\" />
-    <Folder Include="Lab6\" />
-    <Folder Include="Lab7\" />
-    <Folder Include="Lab8\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
