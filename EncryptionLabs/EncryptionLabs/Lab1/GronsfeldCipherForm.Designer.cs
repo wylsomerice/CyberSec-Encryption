@@ -40,9 +40,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(149, 149);
+            this.button1.Location = new System.Drawing.Point(149, 112);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(140, 53);
+            this.button1.Size = new System.Drawing.Size(204, 42);
             this.button1.TabIndex = 0;
             this.button1.Text = "Зашифровать";
             this.button1.UseVisualStyleBackColor = true;

@@ -108,8 +108,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ExcercisesForm.resx">
+      <DependentUpon>ExcercisesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Lab1\GronsfeldCipherForm.resx">
       <DependentUpon>GronsfeldCipherForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lab3\AlGamalCipherForm.resx">
+      <DependentUpon>AlGamalCipherForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lab4\BinaryBlockCipherForm.resx">
+      <DependentUpon>BinaryBlockCipherForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>

@@ -15,8 +15,7 @@ namespace EncryptionLabs
         public MainWindow()
         {
             InitializeComponent();
-            button3.Enabled = false;
-            button4.Enabled = false;
+
             button5.Enabled = false;
             button6.Enabled = false;
             button7.Enabled = false;
@@ -42,12 +41,16 @@ namespace EncryptionLabs
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            this.Visible = false;
+            AlGamalCipherForm alGamal = new AlGamalCipherForm();
+            alGamal.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-
+            this.Visible = false;
+            BinaryBlockCipherForm bbcf = new BinaryBlockCipherForm();
+            bbcf.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)

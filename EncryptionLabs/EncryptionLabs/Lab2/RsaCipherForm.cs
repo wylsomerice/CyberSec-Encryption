@@ -11,10 +11,12 @@ using System.Windows.Forms;
 
 namespace EncryptionLabs
 {
+    
     public partial class RsaCipherForm : Form
     {
         RSAParameters privateKey;
         RSAParameters publicKey;
+        public static byte[] tmp = null;
         public RsaCipherForm()
         {
             InitializeComponent();
@@ -23,6 +25,7 @@ namespace EncryptionLabs
             //Пункт 2
             privateKey = RSA.ExportParameters(true);
             publicKey = RSA.ExportParameters(false);
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -33,7 +36,7 @@ namespace EncryptionLabs
             byte[] output;
             //Пункт 3
             output = RSAEncrypt(input, publicKey, false);
-
+            tmp = output;
             textBox2.Text = Convert.ToBase64String(output);
         }
 
@@ -41,9 +44,9 @@ namespace EncryptionLabs
         {
             UnicodeEncoding byteConverter = new UnicodeEncoding();
             string base64string = Convert.ToBase64String(Encoding.UTF8.GetBytes(textBox2.Text));
-            byte[] input = Convert.FromBase64String(textBox2.Text);
+            byte[] input = Convert.FromBase64String(base64string);
             //Пункт 4
-            byte[] output = RSADecrypt(input, privateKey, false);
+            byte[] output = RSADecrypt(tmp, privateKey, false);
 
             textBox4.Text = Convert.ToBase64String(output);
             MessageBox.Show(Convert.ToBase64String(output));
