@@ -77,7 +77,7 @@
             // 
             // buttonDecipher
             // 
-            this.buttonDecipher.Location = new System.Drawing.Point(281, 166);
+            this.buttonDecipher.Location = new System.Drawing.Point(326, 166);
             this.buttonDecipher.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDecipher.Name = "buttonDecipher";
             this.buttonDecipher.Size = new System.Drawing.Size(149, 59);
@@ -88,7 +88,7 @@
             // 
             // buttonEncrypt
             // 
-            this.buttonEncrypt.Location = new System.Drawing.Point(281, 69);
+            this.buttonEncrypt.Location = new System.Drawing.Point(330, 69);
             this.buttonEncrypt.Margin = new System.Windows.Forms.Padding(4);
             this.buttonEncrypt.Name = "buttonEncrypt";
             this.buttonEncrypt.Size = new System.Drawing.Size(145, 57);

@@ -1,20 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EncryptionLabs
 {
     public partial class BinaryBlockCipherForm : Form
     {
-        private const int sizeOfBlock = 32; //в DES размер блока 64 бит, но поскольку в unicode символ в два раза длинее, то увеличим блок тоже в два раза
+        private const int sizeOfBlock = 64; //в DES размер блока 64 бит, но поскольку в unicode символ в два раза длинее, то увеличим блок тоже в два раза
         private const int sizeOfChar = 8; //размер одного символа (in Unicode 16 bit)
 
         private const int shiftKey = 2; //сдвиг ключа 
@@ -26,18 +19,6 @@ namespace EncryptionLabs
         public BinaryBlockCipherForm()
         {
             InitializeComponent();
-        }
-
-        //зашифровать
-        private void buttonEncrypt_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        //расшифровать
-        private void buttonDecipher_Click(object sender, EventArgs e)
-        {
-            
         }
 
         //доводим строку до размера, чтобы делилась на sizeOfBlock
