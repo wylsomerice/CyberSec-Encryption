@@ -1,4 +1,4 @@
-﻿namespace EncryptionLabs.Lab6
+﻿namespace EncryptionLabs
 {
     partial class FileCompressionForm
     {

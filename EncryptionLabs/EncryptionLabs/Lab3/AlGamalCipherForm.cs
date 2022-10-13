@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Numerics;
+
 using System.Windows.Forms;
 
 namespace EncryptionLabs
@@ -17,125 +14,122 @@ namespace EncryptionLabs
             InitializeComponent();
         }
 
-        private int Rand()//Ф-я получения случайного числа
-        {
-            Random random = new Random();
-            return random.Next();
-        }
-        int power(int a, int b, int n) // a^b mod n - возведение a в степень b по модулю n
-        {
-            int tmp = a;
-            int sum = tmp;
-            for (int i = 1; i < b; i++)
-            {
-                for (int j = 1; j < a; j++)
-                {
-                    sum += tmp;
-                    if (sum >= n)
-                    {
-                        sum -= n;
-                    }
-                }
-                tmp = sum;
-            }
-            return tmp;
-        }
-        int mul(int a, int b, int n) // a*b mod n - умножение a на b по модулю n
-        {
-            int sum = 0;
-            for (int i = 0; i < b; i++)
-            {
-                sum += a;
-                if (sum >= n)
-                {
-                    sum -= n;
-                }
-            }
-            return sum;
-        }
-        void crypt(int p, int g, int x, string strIn) //Шифрование
-        {
-            rTxtBOut.Text = "";
-            int y = power(g, x, p);
-            txtBPublicKey.Text = "Открытый ключ (p,g,y) = (" + p + "," + g + "," + y + ")";
-            txtBPrivateKey.Text = "Закрытый ключ x = " + x;
-            if (strIn.Length > 0)
-            {
-                char[] temp = new char[strIn.Length - 1];
-                temp = strIn.ToCharArray();
-                for (int i = 0; i <= strIn.Length - 1; i++)
-                {
-                    int m = (int)temp[i];
-                    if (m > 0)
-                    {
-                        int k = Rand() % (p - 2) + 1; // 1 < k < (p-1)
-                        int a = power(g, k, p);
-                        int b = mul(power(y, k, p), m, p);
-                        rTxtBOut.Text = rTxtBOut.Text + a + " " + b + " ";
-                    }
-                }
-            }
-        }
-        void decrypt(int p, int x, string strIn) //Дешифрование
-        {
-            if (strIn.Length > 0)
-            {
-                txtBIn.Text = "";
-                string[] strA = strIn.Split(' ');
-                if (strA.Length > 0)
-                {
-                    for (int i = 0; i < strA.Length - 1; i += 2)
-                    {
-                        char[] a = new char[strA[i].Length];
-                        char[] b = new char[strA[i + 1].Length];
-                        int ai = 0;
-                        int bi = 0;
-                        a = strA[i].ToCharArray();
-                        b = strA[i + 1].ToCharArray();
-                        for (int j = 0; (j < a.Length); j++)
-                        {
-                            ai = ai * 10 + (int)(a[j] - 48);
-                        }
-                        for (int j = 0; (j < b.Length); j++)
-                        {
-                            bi = bi * 10 + (int)(b[j] - 48);
-                        }
-                        if ((ai != 0) && (bi != 0))
-                        {
-                            int deM = mul(bi, power(ai, p - 1 - x, p), p);// m=b*(a^x)^(-1)mod p =b*a^(p-1-x)mod p - трудно было  найти нормальную формулу, в ней вся загвоздка
-                            char m = (char)deM;
-                            txtBIn.Text = txtBIn.Text + m;
-                        }
-                    }
-                }
+        private static readonly Random rng = new Random(Environment.TickCount);
 
-            }
-        }
-        private void txtBIn_TextChanged(object sender, EventArgs e) //Обработка изменения текста в текстовом поле
+        public static BigInteger ToBigInteger(string value)
         {
-            string strIn = txtBIn.Text;
-            string strOut = rTxtBOut.Text;
-            int p = Convert.ToInt32(numP.Value);
-            int g = Convert.ToInt32(numG.Value);
-            int x = Convert.ToInt32(numX.Value);
-            crypt(p, g, x, strIn);
-            decrypt(p, x, strOut);
+            BigInteger result = 0;
+            for (int i = 0; i < value.Length; i++)
+            {
+                result = result * 10 + (value[i] - '0');
+            }
+            return result;
         }
+        private static bool IsPrime(BigInteger number)
+        {
+            if ((number & 1) == 0) return (number == 2);
 
-        private void AlGamalCipherForm_Load(object sender, EventArgs e)
+            var limit = Math.Sqrt((double)number);
+            for (uint i = 3; i <= limit; i += 2)
+            {
+                if ((number % i) == 0) return false;
+            }
+            return true;
+        }
+        public BigInteger GenerateNumber(int objlength)
+        {
+            int length = Convert.ToInt32(objlength);
+            BigInteger number = ToBigInteger(rng.NextDouble().ToString("0.000000000000000000000").Substring(2, length));
+            return number;
+        }
+        public BigInteger GeneratePrime()
         {
 
+            BigInteger number = 4;
+            while (!IsPrime(number))
+            {
+                unchecked
+                {
+                    number = GenerateNumber(12);
+                }
+            }
+
+            return number;
+        }
+        private void WriteArrayToFile(string fileName, string[] array)
+        {
+            TextWriter file = File.CreateText(fileName);
+            for (int i = 0; i < array.Length; i++)
+            {
+                file.WriteLine(array[i]);
+            }
+            file.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Decrypt(BigInteger x, BigInteger p)
         {
-            string strIn = txtBIn.Text;
-            string strOut = rTxtBOut.Text;
-            int p = Convert.ToInt32(numP.Value);
-            int g = Convert.ToInt32(numG.Value);
-            int x = Convert.ToInt32(numX.Value);
-            crypt(p, g, x, strIn);
-            decrypt(p, x, strOut);
+            List<string> strings = new List<string>();
+            TextReader file = File.OpenText("EncryptedTextLab3.txt");
+            string s = file.ReadLine();
+            while (s != null)
+            {
+                strings.Add(s);
+                s = file.ReadLine();
+            }
+            file.Close();
+            string[] a = strings.ToArray();
+            s = "";
+            for (int i = 0; i < a.Length; i += 2)
+            {
+                BigInteger a_ = ToBigInteger(a[i]);
+                BigInteger b_ = ToBigInteger(a[i + 1]);
+                BigInteger m1 = BigInteger.Pow(a_, (int)(p - 1 - x));
+                BigInteger m2 = BigInteger.Multiply(m1, b_);
+                BigInteger m3 = BigInteger.ModPow(m2, 1, p);
+                string ms = m3.ToString();
+                int m = Convert.ToInt32(ms);
+                char c = (char)m3;
+                s += c;
+            }
+            TextWriter file1 = File.CreateText("DecryptedTextLab3.txt");
+            file1.WriteLine(s);
+            file1.Close();
+        }
+
+        private void Encrypt(string a, BigInteger g, BigInteger k, BigInteger p, BigInteger y)
+        {
+            int j = 0;
+            string[] strings = new string[a.Length * 2];
+            for (int i = 0; i < strings.Length; i += 2)
+            {
+                BigInteger a_ = BigInteger.ModPow(g, k, p);
+                strings[i] = a_.ToString();
+                int m = Convert.ToInt32(a[j]);
+                BigInteger b_ = BigInteger.ModPow(BigInteger.Multiply(BigInteger.Pow(y, (int)k), m), 1, p);
+                strings[i + 1] = b_.ToString();
+                j++;
+            }
+            WriteArrayToFile("EncryptedTextLab3.txt", strings);
+        }
+        private void generate_button_Click_1(object sender, EventArgs e)
+        {
+            BigInteger p = 12655517791775452577;
+            BigInteger g = GeneratePrime();
+            BigInteger x = 0;
+            while (x == 0 || p - x > 10000 || p - x < 2)
+            {
+                int z = rng.Next(100, 10000);
+                x = p - z;
+            }
+            pValue.Text = p.ToString();
+            gValue.Text = g.ToString();
+            xValue.Text = x.ToString();
+            BigInteger y = BigInteger.ModPow(g, x, p);
+            BigInteger k = 9;
+            string message = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure d";
+            yValue.Text = y.ToString();
+            Encrypt(message, g, k, p, y);
+            Decrypt(x, p);
         }
     }
 }

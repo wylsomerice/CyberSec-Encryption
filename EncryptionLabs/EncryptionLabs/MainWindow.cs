@@ -16,10 +16,7 @@ namespace EncryptionLabs
         {
             InitializeComponent();
 
-            button5.Enabled = false;
-            button6.Enabled = false;
-            button7.Enabled = false;
-            button8.Enabled = false;
+           
         }
 
         #region Шифр Гронсфельда
@@ -55,22 +52,30 @@ namespace EncryptionLabs
 
         private void button5_Click(object sender, EventArgs e)
         {
-
+            this.Visible = false;
+            RightSendCheckForm frscf = new RightSendCheckForm();
+            frscf.Show();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-
+            this.Visible = false;
+            FileCompressionForm fcf = new FileCompressionForm();
+            fcf.Show();
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-
+            this.Visible = false;
+            PasswordHashForm phf = new PasswordHashForm();
+            phf.Show();
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-
+            this.Visible = false;
+            MessageEncryptionForm mef = new MessageEncryptionForm();
+            mef.Show();
         }
 
         private void button9_Click(object sender, EventArgs e)

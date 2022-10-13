@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace EncryptionLabs.Lab6
+namespace EncryptionLabs
 {
     public partial class FileCompressionForm : Form
     {

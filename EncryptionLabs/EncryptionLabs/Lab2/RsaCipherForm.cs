@@ -4,89 +4,213 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Math;
+using System.Security.Cryptography;
+using System.Numerics;
+using System.IO;
 
 namespace EncryptionLabs
 {
     
     public partial class RsaCipherForm : Form
     {
-        RSAParameters privateKey;
-        RSAParameters publicKey;
-        public static byte[] tmp = null;
         public RsaCipherForm()
         {
             InitializeComponent();
-            //Пункт 1
-            RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();
-            //Пункт 2
-            privateKey = RSA.ExportParameters(true);
-            publicKey = RSA.ExportParameters(false);
+        }
+        private static Random rng = new Random(Environment.TickCount);
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //Генерация  числа заданной длинны 
+        long GetNumber(object objlength)
+        {
+            int length = Convert.ToInt32(objlength);
+            long number = Convert.ToInt64(rng.NextDouble().ToString("0.000000000000").Substring(2, length));
+            return number;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+
+        private readonly Random _random = new Random();
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //Генерация простого числа заданной длинны 
+        public long Generate(int s)
         {
-            UnicodeEncoding byteConverter = new UnicodeEncoding();
-            string base64string = Convert.ToBase64String(Encoding.UTF8.GetBytes(textBox1.Text));
-            byte[] input = Convert.FromBase64String(base64string);
-            byte[] output;
-            //Пункт 3
-            output = RSAEncrypt(input, publicKey, false);
-            tmp = output;
-            textBox2.Text = Convert.ToBase64String(output);
+
+            long number = 4;
+            while (!IsPrime(number))
+            {
+                unchecked
+                {
+                    number = GetNumber(s);
+                }
+            }
+            return number;
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            UnicodeEncoding byteConverter = new UnicodeEncoding();
-            string base64string = Convert.ToBase64String(Encoding.UTF8.GetBytes(textBox2.Text));
-            byte[] input = Convert.FromBase64String(base64string);
-            //Пункт 4
-            byte[] output = RSADecrypt(tmp, privateKey, false);
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            textBox4.Text = Convert.ToBase64String(output);
-            MessageBox.Show(Convert.ToBase64String(output));
+        //Проверка на простое число
+        private static bool IsPrime(long number)
+        {
+            if ((number & 1) == 0) return (number == 2);
+
+            var limit = (uint)Math.Sqrt(number);
+            for (uint i = 3; i <= limit; i += 2)
+            {
+                if ((number % i) == 0) return false;
+            }
+            return true;
         }
 
-        static public byte[] RSAEncrypt(byte[] DataToEncrypt, RSAParameters RSAKeyInfo, bool DoOAEPPadding)
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //Вычисляем d
+        BigInteger d, y;
+        public BigInteger[] CalcD(BigInteger e, BigInteger b, BigInteger c)
         {
-            //Create a new instance of RSACryptoServiceProvider.
-            RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();
+            BigInteger s;
+            if (b == 0)
+            {
+                c = e;
+                d = 1;
+                y = 0;
 
-            //Import the RSA Key information. This only needs
-            //toinclude the public key information.
-            RSA.ImportParameters(RSAKeyInfo);
+                return new BigInteger[] { d, y };
+            }
 
-            //Encrypt the passed byte array and specify OAEP padding.  
-            //OAEP padding is only available on Microsoft Windows XP or
-            //later.  
-            return RSA.Encrypt(DataToEncrypt, DoOAEPPadding);
+            CalcD(b, e % b, c);
+
+            s = y;
+            y = d - (e / b) * y;
+            d = s;
+
+            return new BigInteger[] { d, y };
         }
 
-        static public byte[] RSADecrypt(byte[] DataToDecrypt, RSAParameters RSAKeyInfo, bool DoOAEPPadding)
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //Событие генерация значений ключей
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //Расшифровка
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //Шифрование
+        private void button2_Click_1(object sender, EventArgs e)
         {
-            //Create a new instance of RSACryptoServiceProvider.
-            RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();
+            string startPath = @"text.txt";
+            string encryptPath = @"enc.txt";
 
-            //Import the RSA Key information. This needs
-            //to include the private key information.
-            RSA.ImportParameters(RSAKeyInfo);
+            string startText = File.ReadAllText(startPath);
 
-            //Decrypt the passed byte array and specify OAEP padding.  
-            //OAEP padding is only available on Microsoft Windows XP or
-            //later.  
-            return RSA.Decrypt(DataToDecrypt, DoOAEPPadding);
+            string alph = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!.,";
+
+            for (int i = 0; i < startText.Length; i++)
+            {
+                if (alph.Contains(startText[i]))
+                {
+                    BigInteger a = alph.IndexOf(startText[i]);
+
+                    BigInteger b = BigInteger.ModPow(a, BigInteger.Parse(eValue.Text), BigInteger.Parse(nValue.Text));//i^e(mod n)
+
+                    File.AppendAllText(encryptPath, b.ToString() + " ");
+                }
+            }
+        }
+
+        private void DECRYPT_BUTTON_Click(object sender, EventArgs e)
+        {
+            string decryptPath = @"dec.txt";
+            string encryptPath = @"enc.txt";
+            string alph = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!.,";
+
+            string encryptText = File.ReadAllText(encryptPath);
+            List<BigInteger> arr = new List<BigInteger>();
+            int k = -1;
+            for (int i = 0; i < encryptText.Length; i++)
+            {
+                if (encryptText[i] == ' ')
+                {
+                    string str = "";
+                    for (int j = k + 1; j < i; j++)
+                    {
+                        str += encryptText[j];
+                    }
+
+                    arr.Add(BigInteger.Parse(str));
+                    k = i;
+                }
+            }
+            for (int i = 0; i < arr.Count; i++)
+            {
+                BigInteger a = BigInteger.ModPow(arr[i], BigInteger.Abs(BigInteger.Parse(dValue.Text)), BigInteger.Parse(nValue.Text));//e^d(mod n)
+                if (a < int.MaxValue)
+                {
+                    string str2 = alph[int.Parse(a.ToString())].ToString();
+                    File.AppendAllText(decryptPath, str2);
+                }
+                else
+                {
+                    MessageBox.Show("Ошибка! Приватный ключ не подошел!");
+                    File.AppendAllText(decryptPath, "Ошибка! Приватный ключ не подошел!");
+                    break;
+                }
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            do
+            {
+                BigInteger ex;
+                BigInteger p = Generate(12);
+                BigInteger q = Generate(12);
+                BigInteger n = BigInteger.Multiply(q, p);
+                BigInteger m = (p - 1) * (q - 1);
+
+                do
+                {
+                    ex = Generate(12);
+                } while (BigInteger.GreatestCommonDivisor(ex, m) != 1);
+
+
+                d = CalcD(ex, m, 1)[0];
+                y = CalcD(ex, m, 1)[1];
+
+
+                pValue.Text = p.ToString();
+                qValue.Text = q.ToString();
+                dValue.Text = d.ToString();
+                yValue.Text = y.ToString();
+                nValue.Text = n.ToString();
+                eValue.Text = ex.ToString();
+            } while (d <= 0);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            this.Close();
-            MainWindow mw = new MainWindow();
-            mw.Show();
+
         }
+
+        private void button4_Click_2(object sender, EventArgs e)
+        {
+            File.WriteAllText(@"dec.txt", string.Empty);
+            File.WriteAllText(@"enc.txt", string.Empty);
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //Очистка файлов
+    
+
     }
 }

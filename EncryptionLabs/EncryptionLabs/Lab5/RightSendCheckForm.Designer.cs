@@ -1,4 +1,4 @@
-﻿namespace EncryptionLabs.Lab5
+﻿namespace EncryptionLabs
 {
     partial class RightSendCheckForm
     {

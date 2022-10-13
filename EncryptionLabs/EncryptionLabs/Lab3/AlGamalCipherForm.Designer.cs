@@ -28,131 +28,167 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.rTxtBOut = new System.Windows.Forms.TextBox();
-            this.lblTest = new System.Windows.Forms.TextBox();
-            this.txtBTest = new System.Windows.Forms.TextBox();
-            this.txtBPublicKey = new System.Windows.Forms.TextBox();
-            this.txtBPrivateKey = new System.Windows.Forms.TextBox();
-            this.txtBIn = new System.Windows.Forms.TextBox();
-            this.numP = new System.Windows.Forms.NumericUpDown();
-            this.numG = new System.Windows.Forms.NumericUpDown();
-            this.numX = new System.Windows.Forms.NumericUpDown();
-            this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numP)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numG)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numX)).BeginInit();
+            this.yValue = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.xValue = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.generate_button = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.labelE = new System.Windows.Forms.Label();
+            this.gValue = new System.Windows.Forms.Label();
+            this.labelQ = new System.Windows.Forms.Label();
+            this.pValue = new System.Windows.Forms.Label();
+            this.labelP = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // rTxtBOut
+            // yValue
             // 
-            this.rTxtBOut.Location = new System.Drawing.Point(32, 32);
-            this.rTxtBOut.Name = "rTxtBOut";
-            this.rTxtBOut.Size = new System.Drawing.Size(100, 22);
-            this.rTxtBOut.TabIndex = 0;
+            this.yValue.Location = new System.Drawing.Point(826, 81);
+            this.yValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.yValue.Name = "yValue";
+            this.yValue.Size = new System.Drawing.Size(243, 18);
+            this.yValue.TabIndex = 63;
             // 
-            // lblTest
+            // label2
             // 
-            this.lblTest.Location = new System.Drawing.Point(32, 82);
-            this.lblTest.Name = "lblTest";
-            this.lblTest.Size = new System.Drawing.Size(100, 22);
-            this.lblTest.TabIndex = 1;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label2.Location = new System.Drawing.Point(476, 113);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(332, 34);
+            this.label2.TabIndex = 62;
+            this.label2.Text = "Приватный ключ";
             // 
-            // txtBTest
+            // label1
             // 
-            this.txtBTest.Location = new System.Drawing.Point(32, 144);
-            this.txtBTest.Name = "txtBTest";
-            this.txtBTest.Size = new System.Drawing.Size(100, 22);
-            this.txtBTest.TabIndex = 2;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(476, 34);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(292, 37);
+            this.label1.TabIndex = 61;
+            this.label1.Text = "Открытый ключ";
             // 
-            // txtBPublicKey
+            // xValue
             // 
-            this.txtBPublicKey.Location = new System.Drawing.Point(32, 203);
-            this.txtBPublicKey.Name = "txtBPublicKey";
-            this.txtBPublicKey.Size = new System.Drawing.Size(100, 22);
-            this.txtBPublicKey.TabIndex = 3;
+            this.xValue.Location = new System.Drawing.Point(520, 158);
+            this.xValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.xValue.Name = "xValue";
+            this.xValue.Size = new System.Drawing.Size(169, 18);
+            this.xValue.TabIndex = 60;
             // 
-            // txtBPrivateKey
+            // label4
             // 
-            this.txtBPrivateKey.Location = new System.Drawing.Point(32, 267);
-            this.txtBPrivateKey.Name = "txtBPrivateKey";
-            this.txtBPrivateKey.Size = new System.Drawing.Size(100, 22);
-            this.txtBPrivateKey.TabIndex = 4;
+            this.label4.Location = new System.Drawing.Point(800, 81);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label4.Size = new System.Drawing.Size(27, 18);
+            this.label4.TabIndex = 59;
+            this.label4.Text = "y=";
             // 
-            // txtBIn
+            // generate_button
             // 
-            this.txtBIn.Location = new System.Drawing.Point(305, 32);
-            this.txtBIn.Name = "txtBIn";
-            this.txtBIn.Size = new System.Drawing.Size(100, 22);
-            this.txtBIn.TabIndex = 5;
+            this.generate_button.Location = new System.Drawing.Point(36, 242);
+            this.generate_button.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.generate_button.Name = "generate_button";
+            this.generate_button.Size = new System.Drawing.Size(233, 55);
+            this.generate_button.TabIndex = 58;
+            this.generate_button.Text = "Выполнить шифрование/расшифровку";
+            this.generate_button.UseVisualStyleBackColor = true;
+            this.generate_button.Click += new System.EventHandler(this.generate_button_Click_1);
             // 
-            // numP
+            // button3
             // 
-            this.numP.Location = new System.Drawing.Point(438, 167);
-            this.numP.Name = "numP";
-            this.numP.Size = new System.Drawing.Size(120, 22);
-            this.numP.TabIndex = 6;
+            this.button3.Location = new System.Drawing.Point(36, 399);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(109, 39);
+            this.button3.TabIndex = 57;
+            this.button3.Text = "<<Назад";
+            this.button3.UseVisualStyleBackColor = true;
             // 
-            // numG
+            // labelE
             // 
-            this.numG.Location = new System.Drawing.Point(438, 215);
-            this.numG.Name = "numG";
-            this.numG.Size = new System.Drawing.Size(120, 22);
-            this.numG.TabIndex = 7;
+            this.labelE.Location = new System.Drawing.Point(481, 158);
+            this.labelE.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelE.Name = "labelE";
+            this.labelE.Size = new System.Drawing.Size(55, 18);
+            this.labelE.TabIndex = 56;
+            this.labelE.Text = "x=";
             // 
-            // numX
+            // gValue
             // 
-            this.numX.Location = new System.Drawing.Point(438, 268);
-            this.numX.Name = "numX";
-            this.numX.Size = new System.Drawing.Size(120, 22);
-            this.numX.TabIndex = 8;
+            this.gValue.Location = new System.Drawing.Point(542, 81);
+            this.gValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.gValue.Name = "gValue";
+            this.gValue.Size = new System.Drawing.Size(169, 18);
+            this.gValue.TabIndex = 55;
             // 
-            // button1
+            // labelQ
             // 
-            this.button1.Location = new System.Drawing.Point(226, 279);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.labelQ.Location = new System.Drawing.Point(479, 81);
+            this.labelQ.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelQ.Name = "labelQ";
+            this.labelQ.Size = new System.Drawing.Size(55, 18);
+            this.labelQ.TabIndex = 54;
+            this.labelQ.Text = "g=";
+            // 
+            // pValue
+            // 
+            this.pValue.Location = new System.Drawing.Point(96, 81);
+            this.pValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.pValue.Name = "pValue";
+            this.pValue.Size = new System.Drawing.Size(169, 18);
+            this.pValue.TabIndex = 53;
+            // 
+            // labelP
+            // 
+            this.labelP.Location = new System.Drawing.Point(33, 81);
+            this.labelP.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelP.Name = "labelP";
+            this.labelP.Size = new System.Drawing.Size(55, 18);
+            this.labelP.TabIndex = 52;
+            this.labelP.Text = "p=";
             // 
             // AlGamalCipherForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.numX);
-            this.Controls.Add(this.numG);
-            this.Controls.Add(this.numP);
-            this.Controls.Add(this.txtBIn);
-            this.Controls.Add(this.txtBPrivateKey);
-            this.Controls.Add(this.txtBPublicKey);
-            this.Controls.Add(this.txtBTest);
-            this.Controls.Add(this.lblTest);
-            this.Controls.Add(this.rTxtBOut);
+            this.ClientSize = new System.Drawing.Size(1132, 458);
+            this.Controls.Add(this.yValue);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.xValue);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.generate_button);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.labelE);
+            this.Controls.Add(this.gValue);
+            this.Controls.Add(this.labelQ);
+            this.Controls.Add(this.pValue);
+            this.Controls.Add(this.labelP);
             this.Name = "AlGamalCipherForm";
             this.Text = "AlGamalCipher";
-            this.Load += new System.EventHandler(this.AlGamalCipherForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numP)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numG)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numX)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox rTxtBOut;
-        private System.Windows.Forms.TextBox lblTest;
-        private System.Windows.Forms.TextBox txtBTest;
-        private System.Windows.Forms.TextBox txtBPublicKey;
-        private System.Windows.Forms.TextBox txtBPrivateKey;
-        private System.Windows.Forms.TextBox txtBIn;
-        private System.Windows.Forms.NumericUpDown numP;
-        private System.Windows.Forms.NumericUpDown numG;
-        private System.Windows.Forms.NumericUpDown numX;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label yValue;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label xValue;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button generate_button;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label labelE;
+        private System.Windows.Forms.Label gValue;
+        private System.Windows.Forms.Label labelQ;
+        private System.Windows.Forms.Label pValue;
+        private System.Windows.Forms.Label labelP;
     }
 }
