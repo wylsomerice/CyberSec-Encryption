@@ -26,65 +26,7 @@ namespace EncryptionLabs
                 new ArithmeticCoder.symbol('0',1,2),//2             
             };
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-
-            string input = textBox1.Text;
-            HuffmanTree huffmanTree = new HuffmanTree();
-
-
-            huffmanTree.Build(input);
-
-            // Кодирование
-            BitArray encoded = huffmanTree.Encode(input);
-
-            richTextBox1.Text += " Хаффман кодировка: ";
-            foreach (bool bit in encoded)
-            {
-                richTextBox1.Text += ((bit ? 1 : 0) + "");
-            }
-            richTextBox1.Text += "\n";
-
-            #region Арифметическое сжатие
-            string test, expand_test, compressed = "";
-
-            System.IO.MemoryStream mem_test = new System.IO.MemoryStream();
-
-            ArithmeticCoder c;
-
-            test = ToDigitString(encoded);
-            MessageBox.Show(test);
-
-            c = new ArithmeticCoder(alph);
-
-            c.Scale = 2;
-
-            mem_test = c.compress(test);
-
-            foreach (byte b in mem_test.ToArray())
-                compressed += b.ToString();
-
-            expand_test = c.expand(mem_test, test.Length);
-
-            richTextBox1.Text += " Арифметическое сжатие \n До сжатия :" + test;
-            richTextBox1.Text += "\n Сжатие (" + mem_test.Length + " bytes) :\n " + compressed;
-            richTextBox1.Text += "\n Распаковка :" + expand_test;
-            #endregion
-
-
-            Byte[] eh = new Byte[expand_test.Length];
-            eh = Encoding.UTF8.GetBytes(expand_test);
-
-            BitArray encoded2 = new BitArray(eh);
-
-            // Декодировка
-            string decoded = huffmanTree.Decode(encoded);
-
-            richTextBox1.Text += ("\n Хаффман декодировка: " + decoded);
-
-            Console.ReadLine();
-        }
+       
 
         public string ToDigitString(BitArray array)
         {
@@ -116,22 +58,19 @@ namespace EncryptionLabs
             // Кодирование
             BitArray encoded = huffmanTree.Encode(input);
 
-            richTextBox1.Text += " Хаффман кодировка: ";
+            string hoffmanCode = "";
             foreach (bool bit in encoded)
             {
-                richTextBox1.Text += ((bit ? 1 : 0) + "");
+                hoffmanCode += ((bit ? 1 : 0) + "");
             }
-            richTextBox1.Text += "\n";
-
-            #region Арифметическое сжатие
-            string test, expand_test, compressed = "";
+            hoffmanBox.Text = hoffmanCode;
+            string test, compressed = "";
 
             System.IO.MemoryStream mem_test = new System.IO.MemoryStream();
 
             ArithmeticCoder c;
 
             test = ToDigitString(encoded);
-            MessageBox.Show(test);
 
             c = new ArithmeticCoder(alph);
 
@@ -142,25 +81,16 @@ namespace EncryptionLabs
             foreach (byte b in mem_test.ToArray())
                 compressed += b.ToString();
 
-            expand_test = c.expand(mem_test, test.Length);
+            label3.Text = "Арифметическое cжатие (" + mem_test.Length + " bytes)";
+            arithmeticBox.Text = compressed;
+         
+        }
 
-            richTextBox1.Text += " Арифметическое сжатие \n До сжатия :" + test;
-            richTextBox1.Text += "\n Сжатие (" + mem_test.Length + " bytes) :\n " + compressed;
-            richTextBox1.Text += "\n Распаковка :" + expand_test;
-            #endregion
-
-
-            Byte[] eh = new Byte[expand_test.Length];
-            eh = Encoding.UTF8.GetBytes(expand_test);
-
-            BitArray encoded2 = new BitArray(eh);
-
-            // Декодировка
-            string decoded = huffmanTree.Decode(encoded);
-
-            richTextBox1.Text += ("\n Хаффман декодировка: " + decoded);
-
-            Console.ReadLine();
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            MainWindow mw = new MainWindow();
+            mw.Show();
         }
     }
 }

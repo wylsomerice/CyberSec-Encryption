@@ -216,5 +216,12 @@ namespace EncryptionLabs
             else
                 MessageBox.Show("Введите пароль нужной длины");
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            MainWindow mw = new MainWindow();
+            mw.Show();
+        }
     }
 }

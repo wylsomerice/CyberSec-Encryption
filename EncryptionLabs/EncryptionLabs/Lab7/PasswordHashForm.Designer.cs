@@ -35,6 +35,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.keyBox = new System.Windows.Forms.TextBox();
             this.encryptedBox = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // passwordBox
@@ -95,11 +96,22 @@
             this.encryptedBox.Size = new System.Drawing.Size(152, 22);
             this.encryptedBox.TabIndex = 6;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(18, 207);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(88, 41);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "<<Назад";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // PasswordHashForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 192);
+            this.ClientSize = new System.Drawing.Size(384, 260);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.encryptedBox);
             this.Controls.Add(this.keyBox);
             this.Controls.Add(this.label3);
@@ -123,5 +135,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox keyBox;
         private System.Windows.Forms.TextBox encryptedBox;
+        private System.Windows.Forms.Button button2;
     }
 }
